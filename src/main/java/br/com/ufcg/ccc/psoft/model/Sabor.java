@@ -27,7 +27,7 @@ public class Sabor {
 		this.nomeSabor = nomeSabor;
 		this.tipo = tipo;
 		this.tamanhosEValores.put("medio", precoTamMedio);
-		this.tamanhosEValores.put("medio", precoTamGrande);
+		this.tamanhosEValores.put("grande", precoTamGrande);
 	}
 
 	public Long getId() {
