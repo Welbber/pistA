@@ -8,7 +8,7 @@ public class CardapioDTO {
 
 	private Long id;
     private List <String> Sabor;
-    private Estabelecimento estabeleciomento;
+    private Estabelecimento estabelecimento;
 	
     
 	public Long getId() {
@@ -27,12 +27,12 @@ public class CardapioDTO {
 		Sabor = sabor;
 	}
 
-	public Estabelecimento getEstabeleciomento() {
-		return estabeleciomento;
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
 	}
 
-	public void setEstabeleciomento(Estabelecimento estabeleciomento) {
-		this.estabeleciomento = estabeleciomento;
+	public void setEstabeleciomento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
 	}
 	
 }
