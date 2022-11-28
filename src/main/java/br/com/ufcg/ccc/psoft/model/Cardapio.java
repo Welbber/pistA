@@ -1,11 +1,10 @@
 package br.com.ufcg.ccc.psoft.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Cardapio {
@@ -13,13 +12,18 @@ public class Cardapio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private List <String> Sabor;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private List <Sabor> sabor;
+	@OneToOne(targetEntity = Estabelecimento.class, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Estabelecimento estabelecimento;
 	
-    public Cardapio(Long id, List<String> sabor, Estabelecimento estabelecimento) {
+    public Cardapio(Long id, List<Sabor> sabor, Estabelecimento estabelecimento) {
 		
 		this.id = id;
-		Sabor = sabor;
+		this.sabor = new ArrayList<>();
 		this.estabelecimento = estabelecimento;
 	}
 
@@ -31,14 +35,9 @@ public class Cardapio {
 		this.id = id;
 	}
 
-	public List<String> getSabor() {
-		return Sabor;
+	public List<Sabor> getSabor() {
+		return sabor;
 	}
-
-	public void setSabor(List<String> sabor) {
-		Sabor = sabor;
-	}
-
 	public Estabelecimento getEstabelecimento() {
 		return estabelecimento;
 	}

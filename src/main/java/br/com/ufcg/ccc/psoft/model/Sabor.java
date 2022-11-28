@@ -1,7 +1,8 @@
 package br.com.ufcg.ccc.psoft.model;
 
 import java.util.Map;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,7 @@ public class Sabor {
 	private String nomeSabor;
 
 	private String tipo; //doce ou salgado
-	
-	@Autowired
+
 	private Map<String,Double> tamanhosEValores;
 
 	public Sabor(String nomeSabor, String tipo, double precoTamMedio, double precoTamGrande) {

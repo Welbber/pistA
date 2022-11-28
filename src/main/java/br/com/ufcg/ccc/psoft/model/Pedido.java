@@ -1,7 +1,9 @@
 package br.com.ufcg.ccc.psoft.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,16 +15,24 @@ public class Pedido {
 	   @Id
 	   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
+
+		@ManyToOne(targetEntity = Cliente.class)
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	   	private Cliente cliente;
-	   	private List <String> Pizza;
-	    private Pagamento pagamento;
+
+		@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+		private List <Sabor> sabores;
+		@OneToOne(targetEntity = Pagamento.class, cascade = CascadeType.ALL, orphanRemoval = true)
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+		private Pagamento pagamento;
 	    private String status;
 	    
-		public Pedido(Long id, Cliente cliente, List<String> pizza, Pagamento pagamento, String status) {
+		public Pedido(Long id, Cliente cliente, List<Sabor> sabores, Pagamento pagamento, String status) {
 
 			this.id = id;
 			this.cliente = cliente;
-			Pizza = pizza;
+			this.sabores = new ArrayList<>();
 			this.pagamento = pagamento;
 			this.status = status;
 		}
@@ -43,12 +53,8 @@ public class Pedido {
 			this.cliente = cliente;
 		}
 
-		public List<String> getPizza() {
-			return Pizza;
-		}
-
-		public void setPizza(List<String> pizza) {
-			Pizza = pizza;
+		public List<Sabor> getSabores() {
+			return sabores;
 		}
 
 		public Pagamento getPagamento() {
