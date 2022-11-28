@@ -1,8 +1,5 @@
 package br.com.ufcg.ccc.psoft.model;
 
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,13 +18,19 @@ public class Sabor {
 
 	private String tipo; //doce ou salgado
 
-	private Map<String,Double> tamanhosEValores;
+	private Double valorMedio;
+
+	private Double valorGrande;
+
+	//private Map<String,Double> tamanhosEValores;
+
+	public Sabor(){}
 
 	public Sabor(String nomeSabor, String tipo, double precoTamMedio, double precoTamGrande) {
 		this.nomeSabor = nomeSabor;
 		this.tipo = tipo;
-		this.tamanhosEValores.put("medio", precoTamMedio);
-		this.tamanhosEValores.put("grande", precoTamGrande);
+		this.valorMedio = precoTamMedio;
+		this.valorGrande = precoTamGrande;
 	}
 
 	public Long getId() {
@@ -42,11 +45,11 @@ public class Sabor {
 		return tipo;
 	}
 
-	public Map<String, Double> getTamanhosEValores() {
-		return tamanhosEValores;
+	public Double getValorMedio() {
+		return valorMedio;
 	}
-	
-	
-	
-	
+
+	public Double getValorGrande() {
+		return valorGrande;
+	}
 }

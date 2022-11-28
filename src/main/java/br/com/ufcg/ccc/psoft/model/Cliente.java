@@ -18,6 +18,13 @@ public class Cliente {
 
     private String enderecoPrincipal;
 
+    public Cliente(){}
+
+    public Cliente(String codAcesso, String nomeCompleto, String enderecoPrincipal){
+        this.codAcesso = codAcesso;
+        this.nomeCompleto = nomeCompleto;
+        this.enderecoPrincipal = enderecoPrincipal;
+    }
     public Long getId() {
         return id;
     }
