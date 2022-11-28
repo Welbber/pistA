@@ -17,6 +17,16 @@ public class Funcionario {
 
     private Estabelecimento estabelecimento;
 
+    public Funcionario() {
+    }
+
+    public Funcionario(Long id, String nomeCompleto, String codigoAcesso, Estabelecimento estabelecimento) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.codigoAcesso = codigoAcesso;
+        this.estabelecimento = estabelecimento;
+    }
+
     public Long getId() {
         return id;
     }
