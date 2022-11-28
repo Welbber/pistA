@@ -22,8 +22,6 @@ public class Sabor {
 
 	private Double valorGrande;
 
-	//private Map<String,Double> tamanhosEValores;
-
 	public Sabor(){}
 
 	public Sabor(String nomeSabor, String tipo, double precoTamMedio, double precoTamGrande) {
