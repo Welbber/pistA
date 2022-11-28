@@ -11,25 +11,19 @@ public class Entregador {
 
 	private String nomeCompleto;
 
-	private String placaVeiculo;
-
-	private String corVeiculo;
+	@OneToOne
+	private Veiculo veiculo;
 
 	private String status;
 
 	private String codigoAcesso;
 
-	//O entregador trabalha em um estabelecimento ou é melhor o pedido ter o estabelecimento e o empregado entregar
-//	@ManyToMany
-//	private Estabelecimento estabelecimento;
-
 	public Entregador() {
 	}
 
-	public Entregador(String nomeCompleto, String placaVeiculo, String corVeiculo, String status, String codigoAcesso) {
+	public Entregador(String nomeCompleto, Veiculo veiculo, String status, String codigoAcesso) {
 		this.nomeCompleto = nomeCompleto;
-		this.placaVeiculo = placaVeiculo;
-		this.corVeiculo = corVeiculo;
+		this.veiculo = veiculo;
 		this.status = status;
 		this.codigoAcesso = codigoAcesso;
 	}
@@ -50,20 +44,12 @@ public class Entregador {
 		this.nomeCompleto = nomeCompleto;
 	}
 
-	public String getPlacaVeiculo() {
-		return placaVeiculo;
+	public Veiculo getVeiculo() {
+		return veiculo;
 	}
 
-	public void setPlacaVeiculo(String placaVeiculo) {
-		this.placaVeiculo = placaVeiculo;
-	}
-
-	public String getCorVeiculo() {
-		return corVeiculo;
-	}
-
-	public void setCorVeiculo(String corVeiculo) {
-		this.corVeiculo = corVeiculo;
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 
 	public String getStatus() {
