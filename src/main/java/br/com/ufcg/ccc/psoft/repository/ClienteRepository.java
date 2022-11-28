@@ -1,5 +1,9 @@
 package br.com.ufcg.ccc.psoft.repository;
 
-public interface ClienteRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.ufcg.ccc.psoft.model.Cliente;
+
+public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
 }

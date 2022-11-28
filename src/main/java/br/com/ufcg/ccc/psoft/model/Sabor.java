@@ -18,10 +18,10 @@ public class Sabor {
 
 	private String nomeSabor;
 
-	private String tipo; //doce ou salgado
-	
+	private String tipo; // doce ou salgado
+
 	@Autowired
-	private Map<String,Double> tamanhosEValores;
+	private Map<String, Double> tamanhosEValores;
 
 	public Sabor(String nomeSabor, String tipo, double precoTamMedio, double precoTamGrande) {
 		this.nomeSabor = nomeSabor;
@@ -45,8 +45,5 @@ public class Sabor {
 	public Map<String, Double> getTamanhosEValores() {
 		return tamanhosEValores;
 	}
-	
-	
-	
-	
+
 }

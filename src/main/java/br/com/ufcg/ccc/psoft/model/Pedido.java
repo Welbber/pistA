@@ -6,66 +6,64 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class Pedido {
 
-	   @Id
-	   @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
-	   	private Cliente cliente;
-	   	private List <String> Pizza;
-	    private Pagamento pagamento;
-	    private String status;
-	    
-		public Pedido(Long id, Cliente cliente, List<String> pizza, Pagamento pagamento, String status) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-			this.id = id;
-			this.cliente = cliente;
-			Pizza = pizza;
-			this.pagamento = pagamento;
-			this.status = status;
-		}
+	@ManyToOne
+	private Cliente cliente;
 
-		public Long getId() {
-			return id;
-		}
+	@Autowired
+	@OneToOne
+	private List<ItemDePedido> pizzas;
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	@OneToOne
+	private Pagamento pagamento;
 
-		public Cliente getCliente() {
-			return cliente;
-		}
+	private String status;
 
-		public void setCliente(Cliente cliente) {
-			this.cliente = cliente;
-		}
+	public Pedido(Long id, Cliente cliente, Pagamento pagamento, String status) {
 
-		public List<String> getPizza() {
-			return Pizza;
-		}
+		this.id = id;
+		this.cliente = cliente;
+		this.pagamento = pagamento;
+		this.status = status;
+	}
 
-		public void setPizza(List<String> pizza) {
-			Pizza = pizza;
-		}
+	public Long getId() {
+		return id;
+	}
 
-		public Pagamento getPagamento() {
-			return pagamento;
-		}
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-		public void setPagamento(Pagamento pagamento) {
-			this.pagamento = pagamento;
-		}
+	public List<ItemDePedido> getPizza() {
+		return pizzas;
+	}
 
-		public String getStatus() {
-			return status;
-		}
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
 
-		public void setStatus(String status) {
-			this.status = status;
-		}
-	    
-	    
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public void adicionaItemDePedido(ItemDePedido itemDePedido) {
+		this.pizzas.add(itemDePedido);
+	}
+
 }

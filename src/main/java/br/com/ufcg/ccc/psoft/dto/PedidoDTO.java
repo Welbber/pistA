@@ -2,15 +2,23 @@ package br.com.ufcg.ccc.psoft.dto;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.ufcg.ccc.psoft.model.Cliente;
 import br.com.ufcg.ccc.psoft.model.Pagamento;
+import br.com.ufcg.ccc.psoft.model.Sabor;
 
 public class PedidoDTO {
 
 	private Long id;
+	
    	private Cliente cliente;
-   	private List <String> Pizza;
+   	
+   	@Autowired
+   	private List <Sabor> pizzas;
+   	
     private Pagamento pagamento;
+    
     private String status;
     
 	
@@ -30,12 +38,12 @@ public class PedidoDTO {
 		this.cliente = cliente;
 	}
 
-	public List<String> getPizza() {
-		return Pizza;
+	public List<Sabor> getPizzas() {
+		return pizzas;
 	}
 
-	public void setPizza(List<String> pizza) {
-		Pizza = pizza;
+	public void setPizzas(List<Sabor> pizzas) {
+		this.pizzas = pizzas;
 	}
 
 	public Pagamento getPagamento() {

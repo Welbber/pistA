@@ -1,5 +1,5 @@
 package br.com.ufcg.ccc.psoft.service;
 
-public interface ClienteService {
+public interface EstabelecimentoService {
 
 }

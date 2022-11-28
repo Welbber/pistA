@@ -2,12 +2,15 @@ package br.com.ufcg.ccc.psoft.dto;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.ufcg.ccc.psoft.model.Sabor;
 
 public class ItemDePedidoDTO {
 
 	private Long id;
 
+	@Autowired
 	private List<Sabor> sabores;
 	
 	private String tamanho; //medio ou grande

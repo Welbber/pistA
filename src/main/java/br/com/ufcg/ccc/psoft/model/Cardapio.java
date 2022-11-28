@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class Cardapio {
@@ -13,13 +17,18 @@ public class Cardapio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private List <String> Sabor;
+    
+    @Autowired
+    @OneToMany
+    private List <Sabor> sabores;
+    
+    @OneToOne
     private Estabelecimento estabelecimento;
 	
-    public Cardapio(Long id, List<String> sabor, Estabelecimento estabelecimento) {
-		
+    public Cardapio() {}
+    
+    public Cardapio(Long id, Estabelecimento estabelecimento) {
 		this.id = id;
-		Sabor = sabor;
 		this.estabelecimento = estabelecimento;
 	}
 
@@ -31,12 +40,8 @@ public class Cardapio {
 		this.id = id;
 	}
 
-	public List<String> getSabor() {
-		return Sabor;
-	}
-
-	public void setSabor(List<String> sabor) {
-		Sabor = sabor;
+	public List<Sabor> getSabores() {
+		return sabores;
 	}
 
 	public Estabelecimento getEstabelecimento() {
@@ -47,7 +52,9 @@ public class Cardapio {
 		this.estabelecimento = estabelecimento;
 	}
     
-    
+    public void adicionaSabor(Sabor sabor) {
+    	this.sabores.add(sabor);
+    }
     
     
 }
