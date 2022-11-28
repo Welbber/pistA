@@ -1,13 +1,9 @@
 package br.com.ufcg.ccc.psoft.model;
 
-import java.util.Map;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class Sabor {
@@ -18,16 +14,19 @@ public class Sabor {
 
 	private String nomeSabor;
 
-	private String tipo; // doce ou salgado
+	private String tipo; //doce ou salgado
 
-	@Autowired
-	private Map<String, Double> tamanhosEValores;
+	private Double valorMedio;
+
+	private Double valorGrande;
+
+	public Sabor(){}
 
 	public Sabor(String nomeSabor, String tipo, double precoTamMedio, double precoTamGrande) {
 		this.nomeSabor = nomeSabor;
 		this.tipo = tipo;
-		this.tamanhosEValores.put("medio", precoTamMedio);
-		this.tamanhosEValores.put("grande", precoTamGrande);
+		this.valorMedio = precoTamMedio;
+		this.valorGrande = precoTamGrande;
 	}
 
 	public Long getId() {
@@ -42,8 +41,11 @@ public class Sabor {
 		return tipo;
 	}
 
-	public Map<String, Double> getTamanhosEValores() {
-		return tamanhosEValores;
+	public Double getValorMedio() {
+		return valorMedio;
 	}
 
+	public Double getValorGrande() {
+		return valorGrande;
+	}
 }

@@ -1,69 +1,77 @@
 package br.com.ufcg.ccc.psoft.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 public class Pedido {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	   @Id
+	   @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
 
-	@ManyToOne
-	private Cliente cliente;
+		@ManyToOne(targetEntity = Cliente.class)
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	   	private Cliente cliente;
 
-	@Autowired
-	@OneToOne
-	private List<ItemDePedido> pizzas;
+		@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+		private List <Sabor> sabores;
+		@OneToOne(targetEntity = Pagamento.class, cascade = CascadeType.ALL, orphanRemoval = true)
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+		private Pagamento pagamento;
+	    private String status;
+	    
+		public Pedido(Long id, Cliente cliente, List<Sabor> sabores, Pagamento pagamento, String status) {
 
-	@OneToOne
-	private Pagamento pagamento;
+			this.id = id;
+			this.cliente = cliente;
+			this.sabores = new ArrayList<>();
+			this.pagamento = pagamento;
+			this.status = status;
+		}
 
-	private String status;
+		public Long getId() {
+			return id;
+		}
 
-	public Pedido(Long id, Cliente cliente, Pagamento pagamento, String status) {
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-		this.id = id;
-		this.cliente = cliente;
-		this.pagamento = pagamento;
-		this.status = status;
-	}
+		public Cliente getCliente() {
+			return cliente;
+		}
 
-	public Long getId() {
-		return id;
-	}
+		public void setCliente(Cliente cliente) {
+			this.cliente = cliente;
+		}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+		public List<Sabor> getSabores() {
+			return sabores;
+		}
 
-	public List<ItemDePedido> getPizza() {
-		return pizzas;
-	}
+		public Pagamento getPagamento() {
+			return pagamento;
+		}
 
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
+		public void setPagamento(Pagamento pagamento) {
+			this.pagamento = pagamento;
+		}
 
-	public String getStatus() {
-		return status;
-	}
+		public String getStatus() {
+			return status;
+		}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public void adicionaItemDePedido(ItemDePedido itemDePedido) {
-		this.pizzas.add(itemDePedido);
-	}
-
+		public void setStatus(String status) {
+			this.status = status;
+		}
+	    
+	    
 }

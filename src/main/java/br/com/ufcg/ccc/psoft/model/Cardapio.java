@@ -1,15 +1,10 @@
 package br.com.ufcg.ccc.psoft.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Cardapio {
@@ -17,18 +12,18 @@ public class Cardapio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Autowired
-    @OneToMany
-    private List <Sabor> sabores;
-    
-    @OneToOne
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private List <Sabor> sabor;
+	@OneToOne(targetEntity = Estabelecimento.class, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Estabelecimento estabelecimento;
 	
-    public Cardapio() {}
-    
-    public Cardapio(Long id, Estabelecimento estabelecimento) {
+    public Cardapio(Long id, List<Sabor> sabor, Estabelecimento estabelecimento) {
+		
 		this.id = id;
+		this.sabor = new ArrayList<>();
 		this.estabelecimento = estabelecimento;
 	}
 
@@ -40,10 +35,9 @@ public class Cardapio {
 		this.id = id;
 	}
 
-	public List<Sabor> getSabores() {
-		return sabores;
+	public List<Sabor> getSabor() {
+		return sabor;
 	}
-
 	public Estabelecimento getEstabelecimento() {
 		return estabelecimento;
 	}
@@ -52,9 +46,7 @@ public class Cardapio {
 		this.estabelecimento = estabelecimento;
 	}
     
-    public void adicionaSabor(Sabor sabor) {
-    	this.sabores.add(sabor);
-    }
+    
     
     
 }
