@@ -11,7 +11,7 @@ public class ErroSabor {
 	
 	static final String SABOR_JA_CADASTRADO = "O sabor %s de nome %s já esta cadastrado";
 	
-	public static ResponseEntity<CustomErrorType> erroProdutoNaoEncontradoNoCarrinho(long id) {
+	public static ResponseEntity<CustomErrorType> erroSaborNaoEncontrado(long id) {
 		return new ResponseEntity<CustomErrorType>(new CustomErrorType(String.format(ErroSabor.SABOR_NAO_ENCONTRADO, id)),
 				HttpStatus.NOT_FOUND);
 	}
