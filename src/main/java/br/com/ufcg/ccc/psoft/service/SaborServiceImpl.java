@@ -3,6 +3,7 @@ package br.com.ufcg.ccc.psoft.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.ufcg.ccc.psoft.exception.SaborAlreadyCreatedException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
