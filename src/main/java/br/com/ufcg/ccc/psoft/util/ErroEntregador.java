@@ -10,9 +10,6 @@ public class ErroEntregador {
 
     static final String ENTREGADORES_NAO_CASTRADOS = "Não há entregadores cadastrados";
 
-    static final String NAO_FOI_POSSIVEL_ATUALIZAR = "Não foi possível atualizar a situação do entregador %s "
-            + "nome %s";
-
     static final String ENTREGADOR_JA_CADASTRADO = "O entregador nome %s já esta cadastrado";
 
     public static ResponseEntity<CustomErrorType> erroEntregadorNaoEncontrado(long id) {
