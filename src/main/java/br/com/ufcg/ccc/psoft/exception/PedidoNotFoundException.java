@@ -1,5 +1,5 @@
 package br.com.ufcg.ccc.psoft.exception;
 
-public class PedidoNotFoundException {
+public class PedidoNotFoundException extends Exception {
 
 }

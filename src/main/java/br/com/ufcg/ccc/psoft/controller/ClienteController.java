@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class ClienteController {
 
-    @Autowired
-    private ClienteService clienteService;
+//    @Autowired
+//    private ClienteService clienteService;
 
 }

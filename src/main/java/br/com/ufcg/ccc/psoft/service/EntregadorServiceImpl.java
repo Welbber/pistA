@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class EntregadorServiceImpl implements EntregadorService {
 
     @Autowired
-    EntregadorRepository entregadorRepository;
+    private EntregadorRepository entregadorRepository;
 
     @Autowired
     public ModelMapper modelMapper;
