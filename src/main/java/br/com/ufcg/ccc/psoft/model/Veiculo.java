@@ -16,43 +16,14 @@ public class Veiculo {
 
 	private String corVeiculo;
 
-	private String Detalhes;
+	private String tipoVeiculo;
 
-	public Veiculo(String placaVeiculo, String corVeiculo, String detalhes) {
+	public Veiculo() {
+	}
+
+	public Veiculo(String placaVeiculo, String corVeiculo, String tipoVeiculo) {
 		this.placaVeiculo = placaVeiculo;
 		this.corVeiculo = corVeiculo;
-		Detalhes = detalhes;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getPlacaVeiculo() {
-		return placaVeiculo;
-	}
-
-	public void setPlacaVeiculo(String placaVeiculo) {
-		this.placaVeiculo = placaVeiculo;
-	}
-
-	public String getCorVeiculo() {
-		return corVeiculo;
-	}
-
-	public void setCorVeiculo(String corVeiculo) {
-		this.corVeiculo = corVeiculo;
-	}
-
-	public String getDetalhes() {
-		return Detalhes;
-	}
-
-	public void setDetalhes(String detalhes) {
-		Detalhes = detalhes;
+		this.tipoVeiculo = tipoVeiculo;
 	}
 }

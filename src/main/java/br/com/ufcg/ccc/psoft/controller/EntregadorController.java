@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
@@ -28,4 +30,12 @@ public class EntregadorController {
         }
     }
 
+    @GetMapping(value = "/entregadores")
+    public ResponseEntity<?> listarEntregadores() {
+        List<EntregadorDTO> entregadores = entregadorService.listarEntregadores();
+        if (entregadores.isEmpty()) {
+            return ErroEntregador.erroSemEntregadoresCadastrados();
+        }
+        return new ResponseEntity<List<EntregadorDTO>>(entregadores, HttpStatus.OK);
+    }
 }
