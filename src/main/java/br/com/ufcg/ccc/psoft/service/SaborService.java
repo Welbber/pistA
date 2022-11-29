@@ -3,6 +3,7 @@ package br.com.ufcg.ccc.psoft.service;
 import java.util.List;
 
 import br.com.ufcg.ccc.psoft.dto.SaborDTO;
+import br.com.ufcg.ccc.psoft.exception.SaborAlreadyCreatedException;
 import br.com.ufcg.ccc.psoft.exception.SaborNotFoundException;
 import br.com.ufcg.ccc.psoft.model.Sabor;
 
@@ -18,7 +19,7 @@ public interface SaborService {
 
 	public List<SaborDTO> listarSabores();
 	
-	
+	public SaborDTO criarSabor( SaborDTO saborDTO) throws SaborAlreadyCreatedException;
 	
 	
 }

@@ -43,6 +43,19 @@ public class SaborServiceImpl implements SaborService{
 		saborRepository.delete(sabor);
 	}
 
+	public SaborDTO criarSabor( SaborDTO saborDTO) throws SaborAlreadyCreatedException {
+
+		if (isSaborCadastrado(saborDTO.getId())) {
+			throw new SaborAlreadyCreatedException();
+		}
+
+		Sabor sabor = new Sabor(saborDTO.getNomeSabor(),saborDTO.getTipo(),saborDTO.getValorMedio(),saborDTO.getValorGrande());
+
+		salvarSabor(sabor);
+
+		return modelMapper.map(sabor,  SaborDTO.class);
+	}
+	
 	private void salvarSabor(Sabor sabor) {
 		saborRepository.save(sabor);		
 	}
