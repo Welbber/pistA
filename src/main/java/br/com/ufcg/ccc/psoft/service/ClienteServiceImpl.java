@@ -1,6 +1,8 @@
 package br.com.ufcg.ccc.psoft.service;
 
 import br.com.ufcg.ccc.psoft.dto.ClienteDTO;
+import br.com.ufcg.ccc.psoft.exception.ClienteAlreadyCreatedException;
+import br.com.ufcg.ccc.psoft.exception.ClienteNotFoundException;
 import br.com.ufcg.ccc.psoft.model.Cliente;
 import br.com.ufcg.ccc.psoft.repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
@@ -18,18 +20,17 @@ public class ClienteServiceImpl implements ClienteService{
     public ModelMapper modelMapper;
 
     @Override
-    public ClienteDTO getClienteById(Long id) {
+    public ClienteDTO getClienteById(Long id) throws ClienteNotFoundException {
         Cliente cliente = getClienteId(id);
         return modelMapper.map(cliente, ClienteDTO.class);
     }
 
-    private Cliente getClienteId(Long id) {
-        return this.clienteRepository.findById(id)
+    private Cliente getClienteId(Long id) throws ClienteNotFoundException {
+        return clienteRepository.findById(id)
                 .orElseThrow(() -> new ClienteNotFoundException());
     }
-
     @Override
-    public void removerClienteCadastrado(Long id) {
+    public void removerClienteCadastrado(Long id) throws ClienteNotFoundException {
         Cliente cliente = getClienteId(id);
         this.clienteRepository.delete(cliente);
     }
@@ -40,10 +41,12 @@ public class ClienteServiceImpl implements ClienteService{
                 .stream()
                 .map(cliente -> modelMapper.map(cliente, ClienteDTO.class))
                 .collect(Collectors.toList());
+
+        return clientesDTO;
     }
 
     @Override
-    public ClienteDTO criaCliente(ClienteDTO clienteDTO) {
+    public ClienteDTO criaCliente(ClienteDTO clienteDTO) throws ClienteAlreadyCreatedException {
         if(isClienteCadastrado(clienteDTO.getId())){
             throw new ClienteAlreadyCreatedException();
         }
@@ -65,7 +68,7 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    public ClienteDTO atualizaCliente(Long id, ClienteDTO clienteDTO) {
+    public ClienteDTO atualizaCliente(Long id, ClienteDTO clienteDTO) throws ClienteNotFoundException {
         Cliente cliente = getClienteId(id);
 
         cliente.setEnderecoPrincipal(clienteDTO.getEnderecoPrincipal());
