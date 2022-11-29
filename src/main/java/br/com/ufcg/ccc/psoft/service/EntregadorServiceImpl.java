@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class EntregadorServiceImpl implements EntregadorService {
 
     @Autowired
-    EntregadorRepository entregadorRepository;
+    private EntregadorRepository entregadorRepository;
 
     @Autowired
     VeiculoService veiculoService;

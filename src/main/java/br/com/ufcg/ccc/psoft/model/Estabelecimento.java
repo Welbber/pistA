@@ -8,8 +8,20 @@ import javax.persistence.Id;
 @Entity
 public class Estabelecimento {
 
-	 	@Id
-	 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
-	 	private String codigoAcesso;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String codigoAcesso;
+
+	public Estabelecimento() {
+	}
+
+	public Estabelecimento(String codigoAcesso) {
+		this.codigoAcesso = codigoAcesso;
+	}
+
+	public String getCodigoAcesso() {
+		return this.codigoAcesso;
+	}
 }

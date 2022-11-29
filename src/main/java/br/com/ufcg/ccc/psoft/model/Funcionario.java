@@ -4,54 +4,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Funcionario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String nomeCompleto;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String codigoAcesso;
+	private String nomeCompleto;
 
-    private Estabelecimento estabelecimento;
+	private String codigoAcesso;
 
-    public Funcionario() {
-    }
+	@OneToMany
+	private Estabelecimento estabelecimento;
 
-    public Funcionario(Long id, String nomeCompleto, String codigoAcesso, Estabelecimento estabelecimento) {
-        this.id = id;
-        this.nomeCompleto = nomeCompleto;
-        this.codigoAcesso = codigoAcesso;
-        this.estabelecimento = estabelecimento;
-    }
+	public Funcionario() {
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Funcionario(Long id, String nomeCompleto, String codigoAcesso, Estabelecimento estabelecimento) {
+		this.id = id;
+		this.nomeCompleto = nomeCompleto;
+		this.codigoAcesso = codigoAcesso;
+		this.estabelecimento = estabelecimento;
+	}
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getCodigoAcesso() {
-        return codigoAcesso;
-    }
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
 
-    public Estabelecimento getEstabelecimento() {
-        return estabelecimento;
-    }
+	public String getCodigoAcesso() {
+		return codigoAcesso;
+	}
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
 
-    public void setCodigoAcesso(String codigoAcesso) {
-        this.codigoAcesso = codigoAcesso;
-    }
-
-    public void setEstabelecimento(Estabelecimento estabelecimento) {
-        this.estabelecimento = estabelecimento;
-    }
 }
