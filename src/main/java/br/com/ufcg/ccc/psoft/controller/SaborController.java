@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,10 +40,21 @@ public class SaborController {
 	}
 	
 	@GetMapping(value = "/sabor/{idSabor}")
-	public ResponseEntity<?> consultarCliente(@PathVariable("idSabor") long idSabor) {
+	public ResponseEntity<?> consultarSabor(@PathVariable("idSabor") long idSabor) {
 
 		try {
 			SaborDTO sabor = saborService.getSaborById(idSabor);
+			return new ResponseEntity<SaborDTO>(sabor, HttpStatus.OK);
+		} catch (SaborNotFoundException e) {
+			return ErroSabor.erroSaborNaoEncontrado(idSabor);
+		}
+	}
+	
+	@PutMapping(value = "/sabor/{idSabor}")
+	public ResponseEntity<?> atualizarSabor(@PathVariable("idSabor") long idSabor, @RequestBody SaborDTO saborDTO) {
+
+		try {
+			SaborDTO sabor = saborService.atualizarSabor(idSabor, saborDTO);
 			return new ResponseEntity<SaborDTO>(sabor, HttpStatus.OK);
 		} catch (SaborNotFoundException e) {
 			return ErroSabor.erroSaborNaoEncontrado(idSabor);

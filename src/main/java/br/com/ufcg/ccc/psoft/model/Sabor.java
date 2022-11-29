@@ -48,4 +48,22 @@ public class Sabor {
 	public Double getValorGrande() {
 		return valorGrande;
 	}
+
+	public void setNomeSabor(String nomeSabor) {
+		this.nomeSabor = nomeSabor;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setValorMedio(Double valorMedio) {
+		this.valorMedio = valorMedio;
+	}
+
+	public void setValorGrande(Double valorGrande) {
+		this.valorGrande = valorGrande;
+	}
+	
+	
 }

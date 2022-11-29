@@ -21,5 +21,6 @@ public interface SaborService {
 	
 	public SaborDTO criarSabor( SaborDTO saborDTO) throws SaborAlreadyCreatedException;
 	
+	public SaborDTO atualizarSabor(Long id, SaborDTO saborDTO) throws SaborNotFoundException;
 	
 }
