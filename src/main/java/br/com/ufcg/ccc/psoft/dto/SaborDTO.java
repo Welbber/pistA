@@ -12,8 +12,9 @@ public class SaborDTO {
 
 	private String tipo; 
 	
-	@Autowired
-	private Map<String,Double> tamanhosEValores;
+	private Double valorMedio;
+
+	private Double valorGrande;
 
 	public Long getId() {
 		return id;
@@ -39,13 +40,23 @@ public class SaborDTO {
 		this.tipo = tipo;
 	}
 
-	public Map<String, Double> getTamanhosEValores() {
-		return tamanhosEValores;
+	public Double getValorMedio() {
+		return valorMedio;
 	}
 
-	public void setTamanhosEValores(Map<String, Double> tamanhosEValores) {
-		this.tamanhosEValores = tamanhosEValores;
+	public void setValorMedio(Double valorMedio) {
+		this.valorMedio = valorMedio;
 	}
+
+	public Double getValorGrande() {
+		return valorGrande;
+	}
+
+	public void setValorGrande(Double valorGrande) {
+		this.valorGrande = valorGrande;
+	}
+
+
 	
 	
 }
