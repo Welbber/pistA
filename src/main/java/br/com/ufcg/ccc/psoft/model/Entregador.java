@@ -19,7 +19,8 @@ public class Entregador {
 
 	private String codigoAcesso;
 
-	//O entregador trabalha em um estabelecimento ou é melhor o pedido ter o estabelecimento e o empregado entregar
+	// O entregador trabalha em um estabelecimento ou é melhor o pedido ter o
+	// estabelecimento e o empregado entregar
 //	@ManyToMany
 //	private Estabelecimento estabelecimento;
 
