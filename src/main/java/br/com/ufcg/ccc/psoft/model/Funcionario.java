@@ -1,10 +1,10 @@
 package br.com.ufcg.ccc.psoft.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Funcionario {
@@ -17,17 +17,18 @@ public class Funcionario {
 
 	private String codigoAcesso;
 
-	@OneToMany
-	private Estabelecimento estabelecimento;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private List<Estabelecimento> estabelecimento;
 
 	public Funcionario() {
 	}
 
-	public Funcionario(Long id, String nomeCompleto, String codigoAcesso, Estabelecimento estabelecimento) {
+	public Funcionario(Long id, String nomeCompleto, String codigoAcesso, List<Estabelecimento> estabelecimento) {
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
 		this.codigoAcesso = codigoAcesso;
-		this.estabelecimento = estabelecimento;
+		this.estabelecimento = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -42,7 +43,7 @@ public class Funcionario {
 		return codigoAcesso;
 	}
 
-	public Estabelecimento getEstabelecimento() {
+	public List<Estabelecimento> getEstabelecimento() {
 		return estabelecimento;
 	}
 
