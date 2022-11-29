@@ -26,4 +26,16 @@ public class Veiculo {
 		this.corVeiculo = corVeiculo;
 		this.tipoVeiculo = tipoVeiculo;
 	}
+
+	public String getPlacaVeiculo() {
+		return placaVeiculo;
+	}
+
+	public String getCorVeiculo() {
+		return corVeiculo;
+	}
+
+	public String getTipoVeiculo() {
+		return tipoVeiculo;
+	}
 }

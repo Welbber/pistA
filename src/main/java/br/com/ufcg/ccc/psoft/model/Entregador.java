@@ -1,5 +1,7 @@
 package br.com.ufcg.ccc.psoft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,8 @@ public class Entregador {
 
 	private String nomeCompleto;
 
-	@OneToOne
+	@OneToOne(targetEntity = Veiculo.class, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Veiculo veiculo;
 
 	private String status;
@@ -28,4 +31,35 @@ public class Entregador {
 		this.codigoAcesso = codigoAcesso;
 	}
 
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
+	}
+
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCodigoAcesso() {
+		return codigoAcesso;
+	}
+
+	public void setCodigoAcesso(String codigoAcesso) {
+		this.codigoAcesso = codigoAcesso;
+	}
 }

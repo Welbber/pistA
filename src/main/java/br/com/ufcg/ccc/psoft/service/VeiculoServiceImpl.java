@@ -12,7 +12,8 @@ public class VeiculoServiceImpl implements VeiculoService {
     VeiculoRepository veiculoRepository;
 
     public Veiculo criaVeiculo(Veiculo veiculo) {
-        return salvarVeiculoCadastrado(veiculo);
+        Veiculo veiculoEntregador = new Veiculo(veiculo.getPlacaVeiculo(), veiculo.getCorVeiculo(), veiculo.getTipoVeiculo());
+        return salvarVeiculoCadastrado(veiculoEntregador);
     }
 
     private Veiculo salvarVeiculoCadastrado(Veiculo veiculo) {

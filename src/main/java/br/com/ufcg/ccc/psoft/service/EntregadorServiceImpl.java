@@ -48,6 +48,34 @@ public class EntregadorServiceImpl implements EntregadorService {
         return entregadores;
     }
 
+    public void removerEntregadorCadastrado(Long id) throws EntregadorNotFoundException {
+        Entregador entregador = getEntregadorId(id);
+        entregadorRepository.delete(entregador);
+    }
+
+    public EntregadorDTO atualizaEntregador(Long id, EntregadorDTO entregadorDTO) throws EntregadorNotFoundException {
+
+        Entregador entregador = getEntregadorId(id);
+
+        entregador.setNomeCompleto(entregadorDTO.getNomeCompleto());
+        entregador.setStatus(entregadorDTO.getStatus());
+        entregador.setCodigoAcesso(entregadorDTO.getCodigoAcesso());
+        entregador.setVeiculo(entregadorDTO.getVeiculo());
+        salvarEntregadorCadastrado(entregador);
+
+        return modelMapper.map(entregador, EntregadorDTO.class);
+    }
+
+    private Entregador getEntregadorId(Long id) throws EntregadorNotFoundException {
+        return entregadorRepository.findById(id)
+                .orElseThrow(() -> new EntregadorNotFoundException());
+    }
+
+    public EntregadorDTO getEntregadorById(Long id) throws EntregadorNotFoundException {
+        Entregador entregador = getEntregadorId(id);
+        return modelMapper.map(entregador, EntregadorDTO.class);
+    }
+
     private boolean isEntregadorCadastrado(String nome) {
         try {
             getEntregadorByNomeCompleto(nome);
